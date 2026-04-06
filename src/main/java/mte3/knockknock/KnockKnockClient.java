@@ -13,7 +13,10 @@ public class KnockKnockClient {
     public static int PORT = 54322;
     public static String SERVER = "localhost";
 
-    public static void sendAndReceive(PrintWriter writer, String message, Scanner scanner) {
+    public static void sendAndReceive(PrintWriter writer, String message, Scanner scanner) throws IOException {
+        Socket socket = new Socket("localhost", PORT);
+        PrintWriter out = new PrintWriter(socket.getOutputStream());
+        out.flush();
         
         // 
         // 
