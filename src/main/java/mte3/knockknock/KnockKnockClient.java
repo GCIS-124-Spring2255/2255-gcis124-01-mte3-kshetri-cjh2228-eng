@@ -33,15 +33,20 @@ public class KnockKnockClient {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String sent1 = "Knock, Knock";
         out.println(sent1);
+        out.flush();
         String received1 = in.readLine();
-        System.out.println("Sent: " + sent1 + "Received: " + received1);
+        System.out.println("Sent: " + sent1 + ", Received: " + received1);
         out.println(who);
+        out.flush();
         String received2 = in.readLine();
-        System.out.println("Sent: " + who + "Received: " + received2);
+        System.out.println("Sent: " + who + ", Received: " + received2);
         out.println(punchLine);
+        out.flush();
         String received3 = in.readLine();
-        System.out.println("Sent: " + punchLine + "Received: " + received3);
+        System.out.println("Sent: " + punchLine + ", Received: " + received3);
         socket.close();
+        out.close();
+        in.close();
        
 
     } // joke() method closed

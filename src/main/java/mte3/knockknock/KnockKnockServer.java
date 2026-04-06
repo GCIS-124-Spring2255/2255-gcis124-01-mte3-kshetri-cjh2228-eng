@@ -33,16 +33,21 @@ public class KnockKnockServer {
                 String received = in.readLine();
                 String sent = "Who's there?";
                 out.println(sent);
-                System.out.println("Sent: " + sent + "Received: " + received);
+                out.flush();
+                System.out.println("Sent: " + sent + ", Received: " + received);
                 String received2 = in.readLine();
-                String sent2 = received2 = "who?";
+                String sent2 = received2 + ", who?";
                 out.println(sent2);
-                System.out.println("Sent: " + sent2 + "Received: " + received2);
+                out.flush();
+                System.out.println("Sent: " + sent2 + ", Received: " + received2);
                 String punchline = in.readLine();
                 String sent3 = "HAHAHAHA";
                 out.println(sent3);
-                System.out.println("Sent: " + sent3 + "Received: " + punchline);
+                out.flush();
+                System.out.println("Sent: " + sent3 + ", Received: " + punchline);
                 server.close();
+                in.close();
+                out.close();
 
         } catch (IOException e) {
             System.out.println("Waiting for connection");
