@@ -3,7 +3,9 @@
 
 package mte3.knockknock;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Random;
@@ -14,9 +16,9 @@ public class KnockKnockClient {
     public static String SERVER = "localhost";
 
     public static void sendAndReceive(PrintWriter writer, String message, Scanner scanner) throws IOException {
-        Socket socket = new Socket("localhost", PORT);
-        PrintWriter out = new PrintWriter(socket.getOutputStream());
-        out.flush();
+        
+        
+        
         
         // 
         // 
@@ -26,10 +28,21 @@ public class KnockKnockClient {
     
 
     public static void joke(String who,String punchLine) throws IOException {
-        
-        //  
-        // 
-        // 
+        Socket socket = new Socket("localhost", PORT);
+        PrintWriter out = new PrintWriter(socket.getOutputStream());
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String sent1 = "Knock, Knock";
+        out.println(sent1);
+        String received1 = in.readLine();
+        System.out.println("Sent: " + sent1 + "Received: " + received1);
+        out.println(who);
+        String received2 = in.readLine();
+        System.out.println("Sent: " + who + "Received: " + received2);
+        out.println(punchLine);
+        String received3 = in.readLine();
+        System.out.println("Sent: " + punchLine + "Received: " + received3);
+        socket.close();
+       
 
     } // joke() method closed
 

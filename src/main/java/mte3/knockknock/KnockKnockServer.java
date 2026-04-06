@@ -19,27 +19,17 @@ public class KnockKnockServer {
 
     public static void receiveAndSend(Scanner scanner,String message,PrintWriter writer,boolean concat) throws IOException {
         
-        ServerSocket server = new ServerSocket(PORT);
-        
-        PrintWriter out = new PrintWriter(client.getOutputStream());
-        
-        String request = in.readLine();
-        out.flush();
-        if (request.startsWith("Knock, Knock")) {
-            String reply = "Who's there?";
-            out.println(reply);
-        }
         
         // 
 
     } // receiveAndSend() method closed
     
     public static void main(String args[]) throws IOException {
-        try (ServerSocket server = new ServerSocket(PORT);
+        try {ServerSocket server = new ServerSocket(PORT);
             Socket client = server.accept();
             PrintWriter out = new PrintWriter(client.getOutputStream());
-            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));)
-            {
+            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            
                 String received = in.readLine();
                 String sent = "Who's there?";
                 out.println(sent);
@@ -48,9 +38,14 @@ public class KnockKnockServer {
                 String sent2 = received2 = "who?";
                 out.println(sent2);
                 System.out.println("Sent: " + sent2 + "Received: " + received2);
+                String punchline = in.readLine();
+                String sent3 = "HAHAHAHA";
+                out.println(sent3);
+                System.out.println("Sent: " + sent3 + "Received: " + punchline);
+                server.close();
 
-
-
+        } catch (IOException e) {
+            System.out.println("Waiting for connection");
         }
         // 
         // 
